@@ -7,6 +7,7 @@ await build({
   platform: "node",
   outfile: "dist/index.js",
   sourcemap: true,
+  sourcesContent: false,
   plugins: [
     esbuildPluginLicense({
       thirdParty: {
