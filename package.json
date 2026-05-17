@@ -1,25 +1,31 @@
 {
   "name": "publish-crates",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "GitHub Action to publish Rust crates using cargo-workspaces",
   "main": "dist/index.js",
+  "keywords": [
+    "cargo",
+    "crate",
+    "publish"
+  ],
   "scripts": {
-    "build": "ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "build": "bun build.mjs",
     "typecheck": "tsc --noEmit",
     "test": "BUN_TEST=1 bun test __tests__/index.test.ts",
     "test:integration": "BUN_TEST=1 bun test __tests__/integration/",
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@actions/core": "^1.10.1",
-    "@actions/exec": "^1.1.1",
-    "@actions/io": "^1.1.3"
+    "@actions/core": "^3.0.1",
+    "@actions/exec": "^3.0.0",
+    "@actions/io": "^3.0.2"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
-    "@vercel/ncc": "^0.38.1",
+    "@types/node": "^25.8.0",
+    "esbuild": "^0.28.0",
+    "esbuild-plugin-license": "^1.2.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^6.0.3"
   }
 }

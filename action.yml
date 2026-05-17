@@ -1,5 +1,8 @@
 name: "Cargo Publish Workspaces"
 description: "Publish Rust crates using cargo-workspaces"
+branding:
+  icon: "upload-cloud"
+  color: "gray-dark"
 
 inputs:
   token:

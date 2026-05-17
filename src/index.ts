@@ -88,7 +88,7 @@ export async function run(): Promise<void> {
       }
     }
 
-    const publishArgs = ["workspaces", "publish", "--from-git", "--yes"];
+    const publishArgs = ["workspaces", "publish", "--yes"];
 
     if (!dryRun && registryToken) {
       publishArgs.push("--token", registryToken);

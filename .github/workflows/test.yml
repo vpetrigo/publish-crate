@@ -7,6 +7,17 @@ on: # rebuild any PRs and main branch changes
       - main
 
 jobs:
+  typecheck:
+    name: Run typechecking
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
+      - name: Install node dependencies
+        run: bun install -d
+      - name: Run tests
+        run: bun run typecheck
+
   test:
     name: Run tests
     runs-on: ubuntu-latest
@@ -35,7 +46,7 @@ jobs:
 
   build: # make sure build/ci work properly
     name: Build Actions executable
-    needs: [test, integration-test]
+    needs: [test, integration-test, typecheck]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -57,6 +68,10 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v6
+      - uses: taiki-e/cache-cargo-install-action@v3
+        name: Install cargo-workspaces
+        with:
+          tool: cargo-workspaces
       - name: Download dist
         uses: actions/download-artifact@v8
         with:
